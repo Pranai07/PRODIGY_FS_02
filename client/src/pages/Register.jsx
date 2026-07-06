@@ -14,7 +14,7 @@ const Register = () => {
   const [showPassword, setShowPassword] = useState(false);
 
   const [form, setForm] = useState({
-    name: "",
+    fullName: "",
     email: "",
     password: "",
   });
@@ -75,8 +75,8 @@ const Register = () => {
 
           <Input
             label="Full Name"
-            name="name"
-            value={form.name}
+            name="fullName"
+            value={form.fullName}
             onChange={handleChange}
             placeholder="Enter your full name"
           />
