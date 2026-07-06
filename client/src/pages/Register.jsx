@@ -28,6 +28,7 @@ const Register = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    console.log("form clicked");
 
     if (!form.name || !form.email || !form.password) {
       return toast.error("Please fill in all fields.");
@@ -54,9 +55,7 @@ const Register = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-indigo-600 via-purple-600 to-pink-500 flex justify-center items-center px-5">
-
       <div className="w-full max-w-md bg-white/90 backdrop-blur-lg rounded-3xl shadow-2xl p-8">
-
         <div className="flex justify-center mb-4">
           <div className="bg-indigo-100 p-4 rounded-full">
             <FiUserPlus size={35} className="text-indigo-600" />
@@ -72,7 +71,6 @@ const Register = () => {
         </p>
 
         <form onSubmit={handleSubmit} className="space-y-5">
-
           <Input
             label="Full Name"
             name="fullName"
@@ -97,7 +95,6 @@ const Register = () => {
             </label>
 
             <div className="relative">
-
               <input
                 type={showPassword ? "text" : "password"}
                 name="password"
@@ -115,15 +112,12 @@ const Register = () => {
               >
                 {showPassword ? <FiEyeOff /> : <FiEye />}
               </button>
-
             </div>
-
           </div>
 
           <Button type="submit" loading={loading}>
             Create Account
           </Button>
-
         </form>
 
         <p className="text-center mt-6 text-gray-600">
@@ -139,9 +133,7 @@ const Register = () => {
         <p className="text-center text-xs text-gray-400 mt-8">
           © 2026 SecureAuth. All Rights Reserved.
         </p>
-
       </div>
-
     </div>
   );
 };
