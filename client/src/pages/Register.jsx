@@ -30,7 +30,7 @@ const Register = () => {
     e.preventDefault();
     console.log("form clicked");
 
-    if (!form.name || !form.email || !form.password) {
+    if (!form.fullName || !form.email || !form.password) {
       return toast.error("Please fill in all fields.");
     }
 
@@ -40,7 +40,7 @@ const Register = () => {
 
     try {
       setLoading(true);
-
+      console.log("Sending:", form);
       const res = await registerUser(form);
 
       toast.success(res.data.message);
