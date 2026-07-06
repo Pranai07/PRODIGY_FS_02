@@ -79,6 +79,16 @@ npm run dev
 6. Logout
 
 ---
+## ☁ Deployment
+
+### Frontend
+- Vercel
+
+### Backend
+- Render
+
+### Database
+- Neon PostgreSQL
 
 ## 👨‍💻 Developed By
 
