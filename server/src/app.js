@@ -25,7 +25,7 @@ app.use(
   cors({
     origin: [
       "http://localhost:5173",
-      "https://secureauth-alpha.vercel.app",
+      "https://employee-management-system-web.vercel.app",
     ],
     credentials: true,
   })
