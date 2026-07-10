@@ -1,22 +1,28 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { FiEye, FiEyeOff, FiUserPlus, FiUser } from "react-icons/fi";
+import {
+  FaUser,
+  FaEnvelope,
+  FaLock,
+  FaEye,
+  FaEyeSlash,
+} from "react-icons/fa";
 import toast from "react-hot-toast";
 
-import Button from "../components/Button";
-import Input from "../components/Input";
 import { registerUser } from "../services/authService";
 
-const Register = () => {
+export default function Register() {
   const navigate = useNavigate();
 
   const [loading, setLoading] = useState(false);
+
   const [showPassword, setShowPassword] = useState(false);
 
   const [form, setForm] = useState({
     fullName: "",
     email: "",
     password: "",
+    confirmPassword: "",
   });
 
   const handleChange = (e) => {
@@ -28,114 +34,201 @@ const Register = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("form clicked");
 
-    if (!form.fullName || !form.email || !form.password) {
-      return toast.error("Please fill in all fields.");
+    if (
+      !form.fullName ||
+      !form.email ||
+      !form.password ||
+      !form.confirmPassword
+    ) {
+      return toast.error("Please fill all fields");
     }
 
-    if (form.password.length < 6) {
-      return toast.error("Password must be at least 6 characters.");
+    if (form.password !== form.confirmPassword) {
+      return toast.error("Passwords do not match");
     }
 
     try {
       setLoading(true);
-      console.log("Sending:", form);
-      const res = await registerUser(form);
 
-      toast.success(res.data.message);
+      await registerUser({
+        fullName: form.fullName,
+        email: form.email,
+        password: form.password,
+      });
+
+      toast.success("Registration Successful");
 
       navigate("/login");
-    } catch (err) {
-      toast.error(err.response?.data?.message || "Registration failed");
+    } catch (error) {
+      toast.error(
+        error.response?.data?.message ||
+          "Registration Failed"
+      );
     } finally {
       setLoading(false);
     }
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-indigo-600 via-purple-600 to-pink-500 flex justify-center items-center px-5">
-      <div className="w-full max-w-md bg-white/90 backdrop-blur-lg rounded-3xl shadow-2xl p-8">
-        <div className="flex justify-center mb-4">
-          <div className="bg-indigo-100 p-4 rounded-full">
-            <FiUserPlus size={35} className="text-indigo-600" />
-          </div>
+    <div
+      className="d-flex justify-content-center align-items-center vh-100"
+      style={{
+        background:
+          "linear-gradient(to right,#4f46e5,#7c3aed)",
+      }}
+    >
+      <div
+        className="card shadow-lg p-4"
+        style={{
+          width: "450px",
+          borderRadius: "15px",
+        }}
+      >
+        <div className="text-center mb-4">
+
+          <FaUser
+            size={45}
+            className="text-success"
+          />
+
+          <h2 className="mt-3 fw-bold">
+            Create Account
+          </h2>
+
+          <p className="text-muted">
+            Register to continue
+          </p>
+
         </div>
 
-        <h1 className="text-3xl font-bold text-center text-slate-800">
-          Create Account
-        </h1>
+        <form onSubmit={handleSubmit}>
 
-        <p className="text-center text-gray-500 mt-2 mb-8">
-          Join SecureAuth today
-        </p>
+          <div className="mb-3">
 
-        <form onSubmit={handleSubmit} className="space-y-5">
-          <Input
-            label="Full Name"
-            name="fullName"
-            value={form.fullName}
-            onChange={handleChange}
-            placeholder="Enter your full name"
-          />
+            <label>Full Name</label>
 
-          <Input
-            label="Email Address"
-            type="email"
-            name="email"
-            value={form.email}
-            onChange={handleChange}
-            placeholder="Enter your email"
-            autoComplete="email"
-          />
+            <div className="input-group">
 
-          <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">
-              Password
-            </label>
+              <span className="input-group-text">
+                <FaUser />
+              </span>
 
-            <div className="relative">
+              <input
+                type="text"
+                className="form-control"
+                name="fullName"
+                value={form.fullName}
+                onChange={handleChange}
+                required
+              />
+
+            </div>
+
+          </div>
+
+          <div className="mb-3">
+
+            <label>Email</label>
+
+            <div className="input-group">
+
+              <span className="input-group-text">
+                <FaEnvelope />
+              </span>
+
+              <input
+                type="email"
+                className="form-control"
+                name="email"
+                value={form.email}
+                onChange={handleChange}
+                required
+              />
+
+            </div>
+
+          </div>
+
+          <div className="mb-3">
+
+            <label>Password</label>
+
+            <div className="input-group">
+
+              <span className="input-group-text">
+                <FaLock />
+              </span>
+
               <input
                 type={showPassword ? "text" : "password"}
+                className="form-control"
                 name="password"
                 value={form.password}
                 onChange={handleChange}
-                placeholder="Create a password"
-                autoComplete="new-password"
-                className="w-full border border-gray-300 rounded-lg px-4 py-3 pr-12 focus:ring-2 focus:ring-indigo-500 focus:outline-none"
+                required
               />
 
               <button
                 type="button"
-                onClick={() => setShowPassword(!showPassword)}
-                className="absolute right-4 top-3.5 text-gray-500"
+                className="btn btn-outline-secondary"
+                onClick={() =>
+                  setShowPassword(!showPassword)
+                }
               >
-                {showPassword ? <FiEyeOff /> : <FiEye />}
+                {showPassword ? (
+                  <FaEyeSlash />
+                ) : (
+                  <FaEye />
+                )}
               </button>
+
             </div>
+
           </div>
 
-          <Button type="submit" loading={loading}>
-            Create Account
-          </Button>
+          <div className="mb-4">
+
+            <label>Confirm Password</label>
+
+            <div className="input-group">
+
+              <span className="input-group-text">
+                <FaLock />
+              </span>
+
+              <input
+                type={showPassword ? "text" : "password"}
+                className="form-control"
+                name="confirmPassword"
+                value={form.confirmPassword}
+                onChange={handleChange}
+                required
+              />
+
+            </div>
+
+          </div>
+
+          <button
+            className="btn btn-success w-100"
+            disabled={loading}
+          >
+            {loading
+              ? "Creating Account..."
+              : "Register"}
+          </button>
+
         </form>
 
-        <p className="text-center mt-6 text-gray-600">
+        <p className="text-center mt-4">
           Already have an account?{" "}
-          <Link
-            to="/login"
-            className="text-indigo-600 font-semibold hover:underline"
-          >
+          <Link to="/login">
             Login
           </Link>
         </p>
 
-        <p className="text-center text-xs text-gray-400 mt-8">
-          © 2026 SecureAuth. All Rights Reserved.
-        </p>
       </div>
     </div>
   );
-};
-
-export default Register;
+}

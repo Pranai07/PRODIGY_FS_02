@@ -1,18 +1,6 @@
-import axios from "axios";
+import * as authApi from "../api/authApi";
 
-const API = axios.create({
-  baseURL: "https://secureauth-api-ymgl.onrender.com/api",
-  withCredentials: true,
-});
-
-export const loginUser = (data) => API.post("/auth/login", data);
-
-export const registerUser = (data) => API.post("/auth/register", data);
-
-export const logoutUser = () =>
-  API.post("/auth/logout");
-
-export const getProfile = () =>
-  API.get("/users/me", {
-    withCredentials: true,
-  });
+export const loginUser = authApi.login;
+export const registerUser = authApi.register;
+export const logoutUser = authApi.logout;
+export const getProfile = authApi.getProfile;
