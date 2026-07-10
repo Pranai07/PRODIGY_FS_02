@@ -25,7 +25,7 @@ app.use(
   cors({
     origin: [
       "http://localhost:5173",
-      "https://employee-management-system-web.vercel.app",
+      "https://employeemanagementsystem-pg7z0au82-pranai07s-projects.vercel.app",
     ],
     credentials: true,
   })
