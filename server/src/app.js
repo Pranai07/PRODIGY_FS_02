@@ -26,6 +26,7 @@ app.use(
     origin: [
       "http://localhost:5173",
       "https://employeemanagementsystem-pg7z0au82-pranai07s-projects.vercel.app",
+      https://employeemanagementsystem-haf5u5n52-pranai07s-projects.vercel.app
     ],
     credentials: true,
   })
