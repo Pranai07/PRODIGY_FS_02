@@ -1,36 +1,46 @@
-# 🚀 Employee Management System
+# Employee Management System
 
-A full-stack Employee Management System built with **React.js**, **Express.js**, **Node.js**, **Prisma ORM**, **PostgreSQL**, and **JWT Authentication**. The application provides secure authentication and complete CRUD operations for managing employee records through a responsive and user-friendly interface.
+A secure and responsive full-stack Employee Management System built using **React.js**, **Node.js**, **Express.js**, and **PostgreSQL (Neon)**. The application provides JWT-based authentication and complete employee management with CRUD operations. It is deployed using **Vercel** (Frontend) and **Render** (Backend).
 
+---
+
+## 🚀 Live Demo
+
+### Frontend (Vercel)
+https://employeemanagementsystem-haf5u5n5s2-pranai07s-projects.vercel.app
+
+### Backend (Render)
+https://employee-management-system-qw19.onrender.com
+
+---
+
+## 📂 GitHub Repository
+
+### Frontend
+https://github.com/Pranai07/PRODIGY_FS_02/tree/main/client
+
+### Backend
+https://github.com/Pranai07/PRODIGY_FS_02/tree/main/server
+
+---
 
 ## ✨ Features
 
-### 🔐 Authentication
 - User Registration
-- User Login
+- Secure User Login
 - JWT Authentication
+- Password Hashing using bcrypt
 - Protected Routes
-- Secure Logout
-
-### 👨‍💼 Employee Management
-- View Employees
 - Add Employee
-- Edit Employee
+- View Employee List
+- Update Employee Details
 - Delete Employee
-- Search Employees
-
-### 📊 Dashboard
-- Total Employees
-- Total Departments
-- Average Salary
-- Recent Employees
-
-### 🎨 User Interface
-- Responsive Bootstrap 5 Design
-- Reusable React Components
-- Loading Spinner
-- Toast Notifications
-- Delete Confirmation Modal
+- PostgreSQL Database Integration
+- Responsive User Interface
+- Secure REST APIs
+- CORS Configuration
+- Cookie-based Authentication
+- Production Deployment
 
 ---
 
@@ -40,165 +50,179 @@ A full-stack Employee Management System built with **React.js**, **Express.js**,
 - React.js
 - React Router DOM
 - Axios
-- Bootstrap 5
-- React Icons
-- React Hot Toast
+- CSS
 
 ### Backend
 - Node.js
 - Express.js
-- Prisma ORM
+- JWT Authentication
+- bcryptjs
+- Cookie Parser
+- Helmet
+- CORS
+
+### Database
 - PostgreSQL
-- JWT
-- bcrypt
+- Neon Database
+
+### Deployment
+- Vercel
+- Render
 
 ---
 
-## 📂 Project Structure
+## 📁 Project Structure
 
 ```
 Employee-Management-System
 │
 ├── client
 │   ├── src
-│   │   ├── api
-│   │   ├── components
-│   │   ├── pages
-│   │   ├── routes
-│   │   ├── services
-│   │   └── App.jsx
+│   ├── public
+│   └── package.json
 │
 ├── server
-│   ├── config
-│   ├── controllers
-│   ├── middleware
-│   ├── prisma
-│   ├── routes
-│   ├── utils
-│   └── server.js
+│   ├── src
+│   │   ├── controllers
+│   │   ├── routes
+│   │   ├── middleware
+│   │   ├── models
+│   │   ├── config
+│   │   └── app.js
+│   │
+│   ├── .env
+│   └── package.json
 │
 └── README.md
 ```
 
 ---
 
-## ⚙️ Installation
+## 🔐 Authentication
+
+- JWT Token Authentication
+- HTTP-only Cookies
+- Password Hashing using bcrypt
+- Protected API Routes
+- CORS Enabled
+
+---
+
+## 📦 Installation
 
 ### Clone Repository
 
 ```bash
-git clone https://github.com/Pranai07/employee-management-system.git
+git clone https://github.com/Pranai07/PRODIGY_FS_02.git
 ```
 
-### Backend Setup
+### Frontend
+
+```bash
+cd client
+npm install
+npm run dev
+```
+
+### Backend
 
 ```bash
 cd server
-
 npm install
+npm start
 ```
 
-Create a `.env` file:
+---
 
-```env
-DATABASE_URL=your_postgresql_database_url
+## ⚙ Environment Variables
 
-JWT_SECRET=your_jwt_secret
+Create a `.env` file inside the **server** folder.
+
+```
+DATABASE_URL=your_neon_database_url
+
+JWT_SECRET=your_secret_key
+
+JWT_EXPIRES_IN=1d
 
 PORT=5000
 ```
 
-Run Prisma migrations:
-
-```bash
-npx prisma migrate dev
-
-npx prisma generate
-```
-
-Start backend:
-
-```bash
-npm run dev
-```
-
 ---
 
-### Frontend Setup
-
-```bash
-cd client
-
-npm install
-
-npm run dev
-```
-
-
-
-## 🔑 API Endpoints
+## 📡 API Endpoints
 
 ### Authentication
 
-| Method | Endpoint | Description |
-|---------|----------|-------------|
-| POST | `/api/auth/register` | Register User |
-| POST | `/api/auth/login` | Login User |
-| POST | `/api/auth/logout` | Logout User |
-| GET | `/api/users/me` | Get Logged-in User |
+```
+POST /api/auth/register
 
-### Employee
+POST /api/auth/login
+```
 
-| Method | Endpoint | Description |
-|---------|----------|-------------|
-| GET | `/api/employees` | Get All Employees |
-| GET | `/api/employees/:id` | Get Employee |
-| POST | `/api/employees` | Add Employee |
-| PUT | `/api/employees/:id` | Update Employee |
-| DELETE | `/api/employees/:id` | Delete Employee |
+### User
 
----
+```
+GET /api/users/me
+```
 
-## 🔒 Authentication Flow
+### Employees
 
-1. User registers an account.
-2. User logs in with email and password.
-3. Server validates credentials.
-4. JWT token is generated.
-5. Token is stored in Local Storage.
-6. Axios automatically sends the token in request headers.
-7. Protected routes verify the token before granting access.
+```
+GET /api/employees
+
+POST /api/employees
+
+PUT /api/employees/:id
+
+DELETE /api/employees/:id
+```
 
 ---
 
-## 🚀 Future Improvements
 
-- Role-based access (Admin/Employee)
-- Employee Profile Pictures
-- Pagination
-- Export Employee Data
-- Email Notifications
-- Attendance Management
-- Leave Management
-
----
-
-## 📄 License
-
-This project is licensed under the MIT License.
-
----
-## ☁ Deployment
+## 🚀 Deployment
 
 ### Frontend
+
 - Vercel
 
 ### Backend
+
 - Render
 
 ### Database
+
 - Neon PostgreSQL
 
-## 👨‍💻 Developed By
+---
 
-Pranai Sai
+## 📈 Future Improvements
+
+- Role-Based Access Control
+- Employee Search
+- Pagination
+- Dashboard Analytics
+- File Upload
+- Profile Pictures
+- Dark Mode
+- Email Notifications
+- Audit Logs
+- Export Employee Data
+
+---
+
+## 👨‍💻 Author
+
+**Pranai Sai**
+
+GitHub:
+https://github.com/Pranai07
+
+Email:
+pranaisai007@gmail.com
+---
+
+## ⭐ If you found this project useful
+
+Please consider giving this repository a ⭐ on GitHub.
