@@ -7,7 +7,7 @@ A secure and responsive full-stack Employee Management System built using **Reac
 ## 🚀 Live Demo
 
 ### Frontend (Vercel)
-https://employeemanagementsystem-haf5u5n5s2-pranai07s-projects.vercel.app
+https://employeemanagementsystem-weld.vercel.app/
 
 ### Backend (Render)
 https://employee-management-system-qw19.onrender.com
