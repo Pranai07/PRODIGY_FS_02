@@ -26,7 +26,8 @@ app.use(
     origin: [
       "http://localhost:5173",
       "https://employeemanagementsystem-pg7z0au82-pranai07s-projects.vercel.app",
-      "https://employeemanagementsystem-haf5u5n52-pranai07s-projects.vercel.app"
+      "https://employeemanagementsystem-haf5u5n52-pranai07s-projects.vercel.app",
+      "https://employeemanagementsystem-weld.vercel.app",
     ],
     credentials: true,
   })
@@ -36,7 +37,7 @@ app.use(
 app.get("/api/health", (req, res) => {
   res.status(200).json({
     success: true,
-    message: "SUE Backend is running 🚀",
+    message: "Your Backend is running 🚀",
   });
 });
 app.use("/api/auth", authRoutes);
